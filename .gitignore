@@ -1,0 +1,17 @@
+*.pdf
+temp.cpp
+.vscode/
+output/
+PDFs/
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.synctex(busy)
+*.exe
+*.tmp
+list.txt
+.venv/
+data.in
+data.out
