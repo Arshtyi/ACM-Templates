@@ -169,7 +169,7 @@ ll kruskal(vector<Edge> &edges, int n)
     {
         if (dsu.unite(e.u, e.v))
         {
-            mstWeight += e.w;
+            mstWeight +=> e.w;
             edgesAdded++;
             if (edgesAdded == n - 1)
                 break;
