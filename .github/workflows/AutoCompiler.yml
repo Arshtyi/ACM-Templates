@@ -44,11 +44,6 @@ jobs:
                     pip install pandoc pymdown-extensions pygments
                   fi
 
-            - name: Install Pandoc
-              run: |
-                  sudo apt-get install -y pandoc
-                  pandoc --version
-
             - name: Compile LaTeX files
               run: |
                   echo "Compiling LaTeX files..."
@@ -59,77 +54,6 @@ jobs:
 
                   # 按照要求，编译后的PDF保留在原位置，不移动或复制
                   echo "LaTeX compilation completed successfully"
-
-            - name: Compile Markdown files with Pandoc
-              run: |
-                  echo "Compiling Markdown files..."
-
-                  # 确保字体目录存在
-                  if [ ! -d "Themes/drake" ]; then
-                    echo "Creating drake font directory..."
-                    mkdir -p Themes/drake
-                  fi
-
-                  # 如果字体文件不存在，创建一个基本的字体文件
-                  if [ ! -f "Themes/drake/font.css" ]; then
-                    echo "Warning: Themes/drake/font.css not found. Creating a basic font CSS file."
-                    cat > Themes/drake/font.css << 'EOL'
-                  :root {
-                    --text-font: 'Noto Sans', 'Noto Sans CJK SC', sans-serif;
-                    --title-font: 'Noto Sans', 'Noto Sans CJK SC', sans-serif;
-                    --latex-font: 'Noto Serif', 'Noto Serif CJK SC', serif;
-                    --text-size: 16px;
-                    --text-line-height: 1.6;
-                    --code-line-height: 1.6;
-                    --file-tree-text-size: 14px;
-                    --toc-text-size: 14px;
-                    --p-spacing: 1.2rem;
-                  }
-                  EOL
-                  fi
-
-                  # 处理Markdown中的所有子目录
-                  find Markdown -type d | while read dir; do
-                    if [ "$dir" != "Markdown" ]; then
-                      echo "Processing directory: $dir"
-                      
-                      # 处理该目录中的所有Markdown文件
-                      find "$dir" -name "*.md" -type f | while read mdfile; do
-                        filename=$(basename "$mdfile" .md)
-                        echo "Compiling $mdfile to PDF"
-                        
-                        # 使用pandoc将Markdown转换为PDF，使用指定的CSS主题和字体
-                        pandoc "$mdfile" \
-                          --pdf-engine=xelatex \
-                          -V mainfont="Noto Sans" \
-                          -V monofont="Noto Sans Mono" \
-                          -V CJKmainfont="Noto Sans CJK SC" \
-                          -V geometry:margin=1in \
-                          --include-in-header=<(echo '\usepackage{xeCJK}') \
-                          --css=Themes/drake-light.css \
-                          -o "${mdfile%.md}.pdf"
-                      done
-                    fi
-                  done
-
-                  # 处理Markdown根目录下的文件
-                  find Markdown -maxdepth 1 -name "*.md" -type f | while read mdfile; do
-                    filename=$(basename "$mdfile" .md)
-                    echo "Compiling root Markdown file: $mdfile to PDF"
-                    
-                    # 编译到原始位置
-                    pandoc "$mdfile" \
-                      --pdf-engine=xelatex \
-                      -V mainfont="Noto Sans" \
-                      -V monofont="Noto Sans Mono" \
-                      -V CJKmainfont="Noto Sans CJK SC" \
-                      -V geometry:margin=1in \
-                      --include-in-header=<(echo '\usepackage{xeCJK}') \
-                      --css=Themes/drake-light.css \
-                      -o "${mdfile%.md}.pdf"
-                  done
-
-                  echo "Markdown compilation completed successfully"
 
             - name: Run Python script
               run: |

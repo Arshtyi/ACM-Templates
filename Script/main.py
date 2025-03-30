@@ -9,7 +9,6 @@ def main():
     
     # Define paths to required directories
     latex_dir = os.path.join(parent_dir, "LaTeX")
-    markdown_dir = os.path.join(parent_dir, "Markdown")
     pdfs_dir = os.path.join(parent_dir, "PDFs")
     
     # Create PDFs directory if it doesn't exist
@@ -35,25 +34,6 @@ def main():
                     print(f"复制 {file} 时出错: {e}")
     else:
         print(f"警告: 未找到LaTeX目录 {latex_dir}")
-    
-    # Copy PDF files from Markdown subdirectories
-    if os.path.exists(markdown_dir):
-        for dir_name in os.listdir(markdown_dir):
-            dir_path = os.path.join(markdown_dir, dir_name)
-            if os.path.isdir(dir_path):
-                for file in os.listdir(dir_path):
-                    file_path = os.path.join(dir_path, file)
-                    dest_path = os.path.join(pdfs_dir, file)
-                    
-                    if os.path.isfile(file_path) and file.lower().endswith('.pdf'):
-                        try:
-                            shutil.copy2(file_path, pdfs_dir)
-                            print(f"已复制: {file} (来自Markdown/{dir_name}目录)")
-                            copied_files.append(file)
-                        except Exception as e:
-                            print(f"复制 {file} 时出错: {e}")
-    else:
-        print(f"警告: 未找到Markdown目录 {markdown_dir}")
     
     # Print summary with nice formatting
     border = "=" * 110
