@@ -2,7 +2,7 @@
 
 -   ACM 板子
 -   LaTeX(XeLaTeX^2)格式
--   Script 目录下是一个用于复制粘贴的脚本，将 PDF 复制到/PDFs 目录下
+-   Script 目录下 `Copier.py`是一个用于复制粘贴的脚本，将 PDF 复制到/PDFs 目录下，`Toc.py`用于解析.toc 文件展示结构
 -   Releases 采用 Github Actions 自动构建和发布
 
 # 目前内容
