@@ -10,30 +10,29 @@
     label = {lst:#3}
 ]{code/#4}
 }
+\newcommand{\TC}[1]{$O\left(#1\right)$}
 % documentbegin
-\title{\textbf{ACM Templates}}
-\author{Arshtyi}
+\title{\textbf{\href{https://github.com/Arshtyi/ACM-Templates}{ACM Templates}}}
+\author{\href{https://github.com/Arshtyi}{Arshtyi}}
 \date{\today}
 % title,author,date
 \begin{document}
 \thispagestyle{empty}
 \maketitle%封面
 \thispagestyle{empty}
-\input{texs/preface.tex}%前言
+\input{texs/Preface.tex}%前言
 \newpage
 \pagestyle{plain}
 \tableofcontents%目录
 \setcounter{page}{1}
 \pagenumbering{Roman}
 %正文开始
-\input{texs/FastRead.tex}
+\input{texs/IO.tex}
 \input{texs/BigInteger.tex}
-\input{texs/Catalan.tex}
 \input{texs/DFS.tex}
 \input{texs/BFS.tex}
 \input{texs/BinaryTree.tex}
 \input{texs/EulerianPath.tex}
-\input{texs/Fibonacci.tex}
 \input{texs/LCA.tex}
 \input{texs/LinkedList.tex}
 \input{texs/MST.tex}

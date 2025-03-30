@@ -1,7 +1,18 @@
 \newpage
 \section{素数}
 \subsection{素数判断}
-\lsting{CppVS}{素数判断}{素数判断}{IsPrime.cpp}
+$6k\pm 1$法无疑是最常用的素数判断方法，其时间复杂度为\TC{\sqrt{n}}.
+\lsting{CppVS}{素数判断}{素数判断}{Prime/IsPrime.cpp}
 \subsection{素数筛}
-包括埃氏筛、欧拉筛、分段筛、优化埃氏筛.
-\lsting{CppVS}{素数筛}{素数筛}{PrimeSieve.cpp}
+\subsubsection{埃氏筛}
+复杂度\TC{n\log \log n}.
+\lsting{CppVS}{埃氏筛}{eratosthenes}{Prime/Eratosthenes.cpp}
+\subsubsection{线性筛/欧拉筛}
+复杂度\TC{n}.
+\lsting{CppVS}{线性筛/欧拉筛}{Linear}{Prime/Linear.cpp}
+\subsubsection{区间筛/分段筛}
+依赖于线性筛，复杂度\TC{\sqrt{n}+S}.
+\lsting{CppVS}{区间筛/分段筛}{Segmented}{Prime/Segmented.cpp}
+\subsubsection{优化的埃氏筛}
+空间复杂度优化.
+\lsting{CppVS}{优化的埃氏筛}{Bitset}{Prime/Bitset.cpp}

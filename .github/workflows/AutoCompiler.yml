@@ -17,8 +17,8 @@ jobs:
             - name: Get current Beijing time
               id: time
               run: |
-                  echo "RELEASE_TIME=$(TZ='Asia/Shanghai' date '+%Y%m%d%H%M')" >> $GITHUB_ENV
-                  echo "RELEASE_TIME_DISPLAY=$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M')" >> $GITHUB_ENV
+                  echo "release_time=$(TZ='Asia/Shanghai' date '+%Y%m%d%H%M')" >> $GITHUB_OUTPUT
+                  echo "release_time_display=$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M')" >> $GITHUB_OUTPUT
 
             - name: Set up LaTeX full environment
               run: |
@@ -175,8 +175,8 @@ jobs:
               id: create_release
               uses: softprops/action-gh-release@v1
               with:
-                  tag_name: ${{ env.RELEASE_TIME }}
-                  name: "Compiled PDFs ${{ env.RELEASE_TIME_DISPLAY }}"
+                  tag_name: ${{ steps.time.outputs.release_time }}
+                  name: "Compiled PDFs ${{ steps.time.outputs.release_time_display }}"
                   files: PDFs.zip
                   draft: false
                   prerelease: false

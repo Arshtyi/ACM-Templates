@@ -1,8 +1,4 @@
 *.pdf
-temp.cpp
-.vscode/
-output/
-PDFs/
 *.aux
 *.log
 *.out
@@ -11,7 +7,14 @@ PDFs/
 *.synctex(busy)
 *.exe
 *.tmp
-list.txt
-.venv/
+
+temp.cpp
 data.in
 data.out
+list.txt
+
+.venv/
+.cph/
+.vscode/
+output/
+PDFs/

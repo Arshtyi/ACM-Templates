@@ -32,9 +32,9 @@
 \usepackage[format=hang,font=small,textfont=it]{caption} % 自定义标题，hang选项使标题悬挂，small选项设置小字体，textfont=it使标题文本为斜体
 \geometry{top=25.4mm,bottom=25.4mm,left=20mm,right=20mm,headheight=2.17cm,headsep=4mm,footskip=12mm}%设置页边距
 \hypersetup{
-    colorlinks=false,
-    linkcolor=blue,
-    citecolor=green,
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=black,
     urlcolor=red,
 }%设置超链接样式
 \setenumerate[1]{itemsep=5pt,partopsep=0pt,parsep=\parskip,topsep=5pt}%设置enumerate环境的间距
@@ -187,46 +187,46 @@
 
 \lstdefinelanguage{ARMASM}
 {
-  sensitive=false,
-  % base letter (case insensitive)
-  morecomment=[l]{//}, % l-line comment
-  morecomment=[s]{/*}{*/}, % s-multiline comment
-  morestring=[b]", % define strings
-  morestring=[b]', % define strings
-  morekeywords={
-    SVC_Handler,
-    TST,
-    MRSEQ,
-    MRSNE,
-    LDR,
-    SUB,
-    AND,
-    CPSID,
-    STRB,
-    MOVS,
-    BX,
-    MSR,
-    STR,
-    CPSIE,
-    B
-  },
-  % list of operators
-  morekeywords={[2]
-    LR, R1, MSP, PSP, R0,
-    SVC_Handler_Main
-  },
-  % list of other non-standard identifiers
-  %stringstyle=\color{cppstring},
-  %identifierstyle=\color{blue},
-  keywordstyle=\color{blue}\bfseries,
-  keywordstyle={[2]\color{green!60!black}\bfseries},
-  commentstyle=\color{gray}\textit,
-  stringstyle=\color{red},
-  % identifierstyle=\color{red},
-  % keywordstyle=\color{blue}\bfseries,
-  % keywordstyle={[2]\color{green!60!black}\bfseries},
-  % commentstyle=\color{gray}\textit,
-  % stringstyle=\color{red}
+    sensitive=false,
+    % base letter (case insensitive)
+    morecomment=[l]{//}, % l-line comment
+    morecomment=[s]{/*}{*/}, % s-multiline comment
+    morestring=[b]", % define strings
+    morestring=[b]', % define strings
+    morekeywords={
+        SVC_Handler,
+        TST,
+        MRSEQ,
+        MRSNE,
+        LDR,
+        SUB,
+        AND,
+        CPSID,
+        STRB,
+        MOVS,
+        BX,
+        MSR,
+        STR,
+        CPSIE,
+        B
+    },
+    % list of operators
+    morekeywords={[2]
+        LR, R1, MSP, PSP, R0,
+        SVC_Handler_Main
+    },
+    % list of other non-standard identifiers
+    %stringstyle=\color{cppstring},
+    %identifierstyle=\color{blue},
+    keywordstyle=\color{blue}\bfseries,
+    keywordstyle={[2]\color{green!60!black}\bfseries},
+    commentstyle=\color{gray}\textit,
+    stringstyle=\color{red},
+    % identifierstyle=\color{red},
+    % keywordstyle=\color{blue}\bfseries,
+    % keywordstyle={[2]\color{green!60!black}\bfseries},
+    % commentstyle=\color{gray}\textit,
+    % stringstyle=\color{red}
 }
 
 \lstdefinestyle{UVisionARMASM}{

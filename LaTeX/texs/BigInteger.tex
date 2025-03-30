@@ -1,8 +1,15 @@
 \newpage
 \section{高精度算法}
+\subsection{大整数类}
 \begin{enumerate}[label = {\textup{(\arabic*)}}]
-    \item 输入：默认构造函数（0值）、从\inline{long long}构造、从\inline{std::string}构造（均支持负数）.
+    \item 输入：默认构造函数（0值）、从\inline{long long}构造、从\inline{string}构造（均支持负数）.
     \item 运算：实现大整数比较、相加、相减、相乘（高精度乘低精度和高精度乘高精度）、取模（高精度对低精度和高精度对高精度）、整除（高精度除以低精度和高精度除以高精度）（均为重载运算符），快速幂（指数是低精度）、阶乘（高精度和低精度）、带余除法（\inline{divideWithRemainder}）、浮点数除法（\inline{divideWithPrecision}，高精度除以高精度，可指定结果精度）.
     \item 输出：重载\inline{<<}运算符
 \end{enumerate}
-\lsting{CppVS}{高精度类}{BigInteger}{BigInteger.cpp}
+\lsting{CppVS}{高精度类}{BigInteger}{BigInteger/BigInteger.cpp}
+\subsection{Catalan数}
+不取模数而利用大整数类输出完整Catalan数.
+\lsting{CppVS}{Catalan数}{Catalan}{BigInteger/Catalan.cpp}
+\subsection{斐波拉契数列}
+利用矩阵快速幂求斐波拉契数列的第n项（不取模数的\inline{long long}）.
+\lsting{CppVS}{斐波拉契数列}{Fibonacci}{BigInteger/Fibonacci.cpp}
