@@ -1,0 +1,8 @@
+.vscode/
+PDF/
+*.pdf
+
+main.cpp
+main
+data.in
+data.out
