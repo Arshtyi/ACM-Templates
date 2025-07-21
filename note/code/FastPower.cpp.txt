@@ -1,0 +1,10 @@
+ll fastPower(ll a, ll b, ll mod)
+{
+    ll res = 1;
+    do
+    {
+        if (b & 1) res = res * a % mod;
+        a = a * a % mod;
+    } while (b >> = 1);
+    return res;
+}

@@ -1,0 +1,84 @@
+#include <bits/stdc++.h> // 万能头
+// #include <iostream>    // 标准输入输出
+// #include <algorithm>   // sort, reverse, lower_bound ...
+// #include <cstdio>      // C-I/O
+// #include <cstring>     // 字符串处理,memset, memcpy, strlen ...
+// #include <cmath>       // 数学函数,sqrt, pow, abs, sin, cos ...
+// #include <string>      // std::string
+// #include <vector>      // std::vector
+// #include <map>         // std::map
+// #include <set>         // std::set
+// #include <queue>       // std::queue, std::priority_queue
+// #include <deque>       // std::deque
+// #include <stack>       // std::stack
+// #include <bitset>      // std::bitset
+// #include <utility>     // std::pair, std::make_pair ...
+// #include <tuple>       // std::tuple, std::make_tuple ...
+// #include <iomanip>     // setprecision ...
+// #include <sstream>     // string stream
+// #include <cassert>     // assert
+// #include <functional>  // function、lambda ...
+// #include <numeric>     // accumulate, iota ...
+// #include <unordered_map> // unordered_map
+// #include <unordered_set> // unordered_set
+// #include <fcntl.h>     // file
+// #include <sys/mman.h>  // 内存映射相关系统调用
+// #include <sys/stat.h>  // 文件状态、属性相关
+// #include <unistd.h>    // Unix系统调用，如读写文件、进程控制等
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+// #define fio
+#ifdef fio
+char buf[1 << 20], *p1, *p2, pbuf[1 << 20], *pp = pbuf;
+#define gc() (p1 == p2 && (p2 = (p1 = buf) + fread(buf, 1, 1 << 20, stdin), p1 == p2) ? EOF : *p1++)
+#define pc(c) (pp - pbuf == (1 << 20) ? (fwrite(pbuf, 1, 1 << 20, stdout), pp = pbuf, *pp++ = (c)) : (*pp++ = (c)))
+#else
+#define gc getchar
+// #define gc getchar_unlocked
+#define pc putchar
+#endif
+#define FOR(i, a, b) for (int i = (a); i < (b); ++i)
+#define FFOR(i, a, b) for (int i = (a); i <= (b); ++i)
+#define ROF(i, a, b) for (int i = (a); i > (b); --i)
+#define RROF(i, a, b) for (int i = (a); i >= (b); --i)
+#define unsync cin.tie(0), cout.tie(0), ios::sync_with_stdio(0)
+#define endl '\n'
+#define pb push_back
+#define pf push_front
+#define mkp make_pair
+#define mkt make_tuple
+#define fi first
+#define se second
+#define cs const
+#define db double
+#define ld long double
+#define fl float
+#define vec vector
+#define all(x) (x).begin(), (x).end()
+#define local freopen("data.in", "r", stdin)
+#define locall freopen("data.in", "r", stdin), freopen("data.out", "w", stdout)
+// #define int long long
+template <typename T>
+void read(T &t)
+{
+    t = 0;
+    bool f = 1;
+    char x = gc();
+    while (x < '0' || x > '9') { if (x == '-') f = 0; x = gc(); }
+    while (x >= '0' && x <= '9') t = (t << 1) + (t << 3) + (x ^ '0'), x = gc();
+    t = f ? t : -t;
+    return;
+}
+template <typename T>
+void write(T t)
+{
+    bool f = false;
+    if (t < 0) f = true, pc('-'), t = -t;
+    static int sta[40];
+    int top = 0;
+    do { sta[top++] = t % 10, t /= 10; } while (t);
+    if (f) while (top) pc('0' - sta[--top]);
+    else while (top) pc('0' + sta[--top]);
+    return;
+}

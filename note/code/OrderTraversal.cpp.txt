@@ -1,0 +1,19 @@
+struct Node { int left, right; } t[N];
+void pre_order(int x)
+{
+    cout << x << " ";
+    if (t[x].left) pre_order(t[x].left);
+    if (t[x].right) pre_order(t[x].right);
+}
+void in_order(int x)
+{
+    if (t[x].left) in_order(t[x].left);
+    cout << x << " ";
+    if (t[x].right) in_order(t[x].right);
+}
+void post_order(int x)
+{
+    if (t[x].left) post_order(t[x].left);
+    if (t[x].right) post_order(t[x].right);
+    cout << x << " ";
+}

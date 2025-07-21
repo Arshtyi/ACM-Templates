@@ -1,0 +1,83 @@
+struct Node
+{
+    int data;
+    Node *previous, *next;
+    Node(int val) : data(val), previous(nullptr), next(nullptr) {}
+};
+class DoubleLinkedList
+{
+private:
+    Node *head, *tail;
+    int size;
+public:
+    DoubleLinkedList() : head(nullptr), tail(nullptr), size(0) {} // 默认构造函数
+    DoubleLinkedList(vector<int> values) : head(nullptr), tail(nullptr), size(0) { for (int val : values) append(val); } // 根据数组构造链表
+    void append(int val)
+    {
+        Node *newNode = new Node(val);
+        if (!head) head = tail = newNode;
+        else tail->next = newNode, newNode->previous = tail, tail = newNode;
+        size++;
+    } // 追加节点
+    void remove(int index)
+    {
+        if (index < 1 || index > size) return; // 无效位置
+        Node *toDelete = head;
+        if (index == 1) // 删除头节点
+        {
+            head = head->next;
+            if (head) head->previous = nullptr;
+            else tail = nullptr; // 如果链表变空
+        }
+        else
+        {
+            for (int i = 1; i < index; i++) toDelete = toDelete->next;
+            if (toDelete->previous) toDelete->previous->next = toDelete->next;
+            if (toDelete->next) toDelete->next->previous = toDelete->previous;
+            if (toDelete == tail) tail = toDelete->previous; // 更新尾节点
+        }
+        delete toDelete;
+        size--;
+    } // 移除第n个节点
+    void insert(int index, int val)
+    {
+        if (index < 1 || index > size + 1) return; // 无效位置
+        Node *newNode = new Node(val);
+        if (index == 1) // 在头部插入
+        {
+            newNode->next = head;
+            if (head) head->previous = newNode;
+            head = newNode;
+            if (!tail) tail = newNode; // 如果链表为空
+        }
+        else
+        {
+            Node *current = head;
+            for (int i = 1; i < index - 1; i++) current = current->next;
+            newNode->next = current->next, newNode->previous = current;
+            if (current->next) current->next->previous = newNode;
+            current->next = newNode;
+            if (newNode->next == nullptr) tail = newNode; // 更新尾节点
+        }
+        size++;
+    } // 在第index个位置插入节点
+    void clear()
+    {
+        Node *current = head;
+        while (current) Node *toDelete = current, current = current->next, delete toDelete;
+        head = tail = nullptr;
+        size = 0;
+    } // 清空链表
+    void display() const
+    {
+        Node *current = head;
+        while (current)
+        {
+            cout << current->data << " ";
+            current = current->next;
+        }
+        cout << endl;
+    } // 展示链表
+    int getSize() const { return size; } // 获取链表大小
+    ~DoubleLinkedList() { clear(); }     // 析构函数
+};

@@ -1,0 +1,7 @@
+void init(int n) { for (int i = 1; i <= n; ++i) f[i] = i; }
+int find(int x) { return x == f[x] ? x : f[x] = find(f[x]); }
+void merge(int x, int y)
+{
+    int f1 = find(x), f2 = find(y);
+    if (f1 != f2) f[f1] = f2;
+}

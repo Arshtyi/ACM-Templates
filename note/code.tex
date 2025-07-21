@@ -1,0 +1,125 @@
+\documentclass{code}
+\usepackage{code}
+\title{\Huge{Code Template}}
+\author{\huge{Arshtyi}}
+\date{\today}
+\newcommand{\fzd}[1]{\ensuremath{O\left(#1\right)}}
+\newcommand{\code}[1]{\lstinputlisting[language=CPP]{code/#1.cpp.txt}}
+% \newcommand{\codeinline}[1]{\lstinline|#1|}
+\begin{document}
+\maketitle
+\newpage
+\pagenumbering{Roman}
+\setcounter{page}{1}
+\pagestyle{plain}
+\tableofcontents
+\newpage
+\setcounter{page}{1}
+\pagenumbering{arabic}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\thepage}
+\section{I/O}
+\subsection{开始坐牢}
+\code{main}
+\newpage
+\section{排序}
+\subsection{快速排序}
+时间复杂度：\fzd{n \log n},空间复杂度：\fzd{n}.
+\code{QuickSort}
+\newpage
+\section{查询}
+\subsection{二分查找}
+时间复杂度：\fzd{\log n},空间复杂度：\fzd{1}.
+\code{BinarySearch}
+\newpage
+\section{搜索}
+\subsection{\texorpdfstring{$DFS$}{DFS}}
+时间复杂度：\fzd{V + E},空间复杂度：\fzd{V}.
+\code{DFS}
+\subsection{\texorpdfstring{$BFS$}{BFS}}
+时间复杂度：\fzd{V + E},空间复杂度：\fzd{V}.
+\code{BFS}
+\newpage
+\section{二叉树}
+\subsection{建树}
+\subsection{根据节点信息建树}
+根据$DFS$得到深度.
+\code{BuildTreeByDFS}
+\subsection{遍历}
+\subsubsection{层次遍历}
+每次取出队列首,加入其子结点到队列尾.时间复杂度：\fzd{n},空间复杂度：\fzd{n}.
+\code{LevelOrderTraversal}
+\subsubsection{顺序遍历}
+前序、中序、后序本质上都是$DFS$.
+\code{OrderTraversal}
+\newpage
+\section{图}
+\subsection{拓扑排序}
+时间复杂度：\fzd{V + E},空间复杂度：\fzd{V}.
+\code{TopologicalSort}
+\newpage
+\section{数论}
+\subsection{素数筛}
+埃氏筛时间复杂度为\fzd{n \log \log n}.
+\code{SieveOfEratosthenes}
+\newpage
+\section{RHS}
+\subsection{快速幂}
+时间复杂度：\fzd{\log n},空间复杂度：\fzd{1}.
+\code{FastPower}
+\subsection{链表}
+\subsubsection{单向链表}
+\code{SingleLinkedList}
+\subsubsection{双向链表}
+\code{DoubleLinkedList}
+\subsubsection{循环单向链表}
+\code{CircularSingleLinkedList}
+\subsection{并查集}
+路径压缩的时间复杂度：\fzd{\log n}.
+\code{UnionFind}
+\subsection{高精度数类}
+\code{BigInteger}
+\newpage
+\section{Hints}
+\subsection{位运算}
+\subsubsection{异或}
+\begin{enumerate}[label=\arabic*)]
+    \item $\displaystyle\bigoplus_{i=1}^{n} i =
+        \begin{cases}
+            n      & \text{if } n \equiv 0 \pmod{4} \\
+            1      & \text{if } n \equiv 1 \pmod{4} \\
+            n + 1  & \text{if } n \equiv 2 \pmod{4} \\
+            0      & \text{if } n \equiv 3 \pmod{4}
+        \end{cases}$
+    \item $\displaystyle\bigoplus_{i=1}^{n} x =
+        \begin{cases}
+            0 & \text{if $n$ is even} \\
+            x & \text{if $n$ is odd}
+        \end{cases}$
+    \item $x \oplus 0 = x$
+\end{enumerate}
+\subsection{数论}
+\subsubsection{所有正整数的平方差}
+所有正整数的平方差的集合为所有大于等于$3$的奇数和所有大于等于$8$的$4$的倍数的集合也就是
+\begin{align*}
+    \left\{y^2-x^2\mid\forall 1\leqslant x<y\in \mathbb{Z}^+\right\}=\left\{x\mid x=2k+1,k\geqslant 1\vee x=4k,k\geqslant 2\right\}
+\end{align*}
+\subsubsection{除数函数}
+记$\displaystyle a=p_{1}^{\alpha_{1}}p_{2}^{\alpha_{2}}\cdots p_{s}^{\alpha_{s}}$,则除数函数$\tau \left(a\right)$表示$a$所有正约数的个数，表达为\begin{align*}
+    \tau \left(a\right) &=\prod_{i=1}^{s}\left(\alpha_{i}+1\right)\\
+    &=\prod_{i=1}^{s}\tau \left(p_{i}^{\alpha_{i}}\right)
+\end{align*}
+除数和函数$\sigma \left(a\right)$表示$a$所有正约数的和，表达为
+\begin{align*}
+    \sigma \left(a\right) &=\prod_{i=1}^{s}\frac{p_{i}^{\alpha_{i}+1}-1}{p_{i}-1}\\
+    &=\prod_{i=1}^{s}\sigma \left(p_{i}^{\alpha_{i}}\right)
+\end{align*}
+\subsection{组合数学}
+\subsubsection{组合数的递推计算}
+组合数的递推公式为
+\begin{align*}
+    C_{n}^{m} = C_{n-1}^{m-1} + C_{n-1}^{m}
+\end{align*}
+\end{document}

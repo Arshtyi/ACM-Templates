@@ -1,0 +1,82 @@
+struct Node
+{
+    int data;
+    Node *next;
+    Node(int value) : data(value), next(nullptr) {}
+};
+class CircularSingleLinkedList
+{
+private:
+    Node *head, *tail;
+    int size;
+public:
+    CircularSingleLinkedList() : head(nullptr), tail(nullptr), size(0) {}
+    CircularSingleLinkedList(vector<int> values) : head(nullptr), tail(nullptr), size(0) { for (int value : values) append(value); }
+    void append(int value)
+    {
+        Node *newNode = new Node(value);
+        if (!head) head = tail = newNode, tail->next = head;
+        else tail->next = newNode, tail = newNode, tail->next = head;
+        size++;
+    }
+    void prepend(int value)
+    {
+        Node *newNode = new Node(value);
+        if (!head) head = tail = newNode, tail->next = head;
+        else newNode->next = head, head = newNode, tail->next = head;
+        size++;
+    }
+    void insert(int index, int value)
+    {
+        if (index < 0 || index > size) return;
+        if (index == 0)
+        {
+            prepend(value);
+            return;
+        }
+        if (index == size)
+        {
+            append(value);
+            return;
+        }
+        Node *newNode = new Node(value), *current = head;
+        for (int i = 0; i < index - 1; i++) current = current->next;
+        newNode->next = current->next, current->next = newNode;
+        size++;
+    }
+    void remove(int index)
+    {
+        if (index < 0 || index >= size) return;
+        Node *toDelete;
+        if (index == 0)
+        {
+            toDelete = head;
+            if (size == 1) head = tail = nullptr;
+            else head = head->next, tail->next = head;
+        }
+        else
+        {
+            Node *current = head;
+            for (int i = 0; i < index - 1; i++) current = current->next;
+            toDelete = current->next, current->next = toDelete->next;
+            if (index == size - 1) tail = current;
+        }
+        delete toDelete;
+        size--;
+    }
+
+    int getSize() const { return size; }
+    void clear() { while (size) remove(0); }
+    ~CircularSingleLinkedList() { clear(); }
+    void display() const
+    {
+        if (!size) return;
+        Node *current = head;
+        do
+        {
+            cout << current->data << " ";
+            current = current->next;
+        } while (current != head);
+        cout << endl;
+    }
+};
