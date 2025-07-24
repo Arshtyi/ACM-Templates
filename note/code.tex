@@ -54,6 +54,8 @@
 \subsubsection{顺序遍历}
 前序、中序、后序本质上都是$DFS$.
 \code{OrderTraversal}
+可以根据两种顺序遍历给出第三种遍历的结果.
+\code{OrderTraversalByTwoOrders}
 \newpage
 \section{图}
 \subsection{拓扑排序}
@@ -122,4 +124,11 @@
 \begin{align*}
     C_{n}^{m} = C_{n-1}^{m-1} + C_{n-1}^{m}
 \end{align*}
+\subsubsection{格点图中的矩形个数}
+一个$N\times M$的格点图中，矩形的总个数为
+\[
+C_{N+1}^{2} \cdot C_{M+1}^{2} = \frac{MN\left(M+1\right)\left(N+1\right)}{4}
+\]特别的，正方形的个数为\[
+\sum_{i=1}^{\min\left(M,N\right)} \left(M-i+1\right)\left(N-i+1\right)
+\]
 \end{document}

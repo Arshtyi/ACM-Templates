@@ -26,8 +26,10 @@
 // #include <sys/stat.h>  // 文件状态、属性相关
 // #include <unistd.h>    // Unix系统调用，如读写文件、进程控制等
 using namespace std;
-typedef long long ll;
-typedef unsigned long long ull;
+typedef long long i64;
+typedef unsigned long long u64;
+typedef __int128 i128;
+typedef unsigned __int128 u128;
 // #define fio
 #ifdef fio
 char buf[1 << 20], *p1, *p2, pbuf[1 << 20], *pp = pbuf;
@@ -45,9 +47,18 @@ char buf[1 << 20], *p1, *p2, pbuf[1 << 20], *pp = pbuf;
 #define unsync cin.tie(0), cout.tie(0), ios::sync_with_stdio(0)
 #define endl '\n'
 #define pb push_back
+#define pob pop_back
 #define pf push_front
+#define pof pop_front
+#define eb emplace_back
 #define mkp make_pair
 #define mkt make_tuple
+#define pii pair<int, int>
+#define pll pair<long long, long long>
+#define pdd pair<double, double>
+#define pld pair<long double, long double>
+#define pcc pair<char, char>
+#define pss pair<string, string>
 #define fi first
 #define se second
 #define cs const
@@ -78,7 +89,6 @@ void write(T t)
     static int sta[40];
     int top = 0;
     do { sta[top++] = t % 10, t /= 10; } while (t);
-    if (f) while (top) pc('0' - sta[--top]);
-    else while (top) pc('0' + sta[--top]);
+    while (top) pc('0' + sta[--top]);
     return;
 }
