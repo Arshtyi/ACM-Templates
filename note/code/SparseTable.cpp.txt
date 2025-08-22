@@ -1,0 +1,24 @@
+template <typename T>
+class SparseTable
+{
+    vector<vector<T>> ST;
+    static T df(const T &a, const T &b) { return max(a, b); }
+    function<T(const T &, const T &)> op;
+public:
+    SparseTable(const vector<T> &v, function<T(const T &, const T &)> f = df) : op(f)
+    {
+        int len = v.size(), l1 = ceil(log2(len)) + 1;
+        ST.assign(len, vector<T>(l1, 0));
+        for (int i = 0; i < len; ++i) ST[i][0] = v[i];
+        for (int i = 1; i < l1; ++i)
+        {
+            int pj = (1 << (i - 1));
+            for (int j = 0; j + pj < len; ++j) ST[j][i] = op(ST[j][i - 1], ST[j + pj][i - 1]);
+        }
+    }
+    T query(int l, int r) const
+    {
+        int q = floor(log2(r - l + 1));
+        return op(ST[l][q], ST[r - (1 << q) + 1][q]);
+    }
+};

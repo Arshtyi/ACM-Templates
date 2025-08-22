@@ -45,3 +45,5 @@
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 \RequirePackage{enumitem}
+\RequirePackage{graphicx}
+\RequirePackage{import}

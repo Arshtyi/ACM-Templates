@@ -1,5 +1,5 @@
 \lstset{
-    basicstyle=\ttfamily,
+    basicstyle=\ttfamily\tiny,
     columns=fullflexible,
     keepspaces=true,
     showstringspaces=false,
@@ -17,7 +17,7 @@
     escapeinside={(*@}{@*)}
 }
 \lstdefinestyle{mystyle}{
-    basicstyle=\ttfamily\footnotesize\fontspec{Fira Code},
+    basicstyle=\ttfamily\tiny\fontspec{Fira Code},
     columns=fullflexible,
     keepspaces=true,
     showstringspaces=false,
@@ -53,3 +53,10 @@
     stringstyle=\color{black},
 }
 \setlength{\headheight}{12.64723pt}
+\newcommand{\incfig}[2]{%
+    \begin{figure}[htbp]
+        \centering
+        \def\svgwidth{#1\linewidth}
+        \import{figure/}{#2.pdf_tex}
+    \end{figure}
+}

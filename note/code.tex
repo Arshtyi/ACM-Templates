@@ -26,20 +26,23 @@
 \newpage
 \section{排序}
 \subsection{快速排序}
-时间复杂度：\fzd{n \log n},空间复杂度：\fzd{n}.
+时间复杂度：\fzd{n \log n}.
 \code{QuickSort}
 \newpage
 \section{查询}
 \subsection{二分查找}
-时间复杂度：\fzd{\log n},空间复杂度：\fzd{1}.
+时间复杂度：\fzd{\log n}.
 \code{BinarySearch}
+\subsection{ST表}
+时间复杂度：\fzd{1}.
+\code{SparseTable}
 \newpage
 \section{搜索}
 \subsection{\texorpdfstring{$DFS$}{DFS}}
-时间复杂度：\fzd{V + E},空间复杂度：\fzd{V}.
+时间复杂度：\fzd{V + E}.
 \code{DFS}
 \subsection{\texorpdfstring{$BFS$}{BFS}}
-时间复杂度：\fzd{V + E},空间复杂度：\fzd{V}.
+时间复杂度：\fzd{V + E}.
 \code{BFS}
 \newpage
 \section{二叉树}
@@ -49,7 +52,7 @@
 \code{BuildTreeByDFS}
 \subsection{遍历}
 \subsubsection{层次遍历}
-每次取出队列首,加入其子结点到队列尾.时间复杂度：\fzd{n},空间复杂度：\fzd{n}.
+每次取出队列首,加入其子结点到队列尾.时间复杂度：\fzd{n}.
 \code{LevelOrderTraversal}
 \subsubsection{顺序遍历}
 前序、中序、后序本质上都是$DFS$.
@@ -59,7 +62,7 @@
 \newpage
 \section{图}
 \subsection{拓扑排序}
-时间复杂度：\fzd{V + E},空间复杂度：\fzd{V}.
+时间复杂度：\fzd{V + E}.
 \code{TopologicalSort}
 \newpage
 \section{数论}
@@ -69,8 +72,13 @@
 \newpage
 \section{RHS}
 \subsection{快速幂}
-时间复杂度：\fzd{\log n},空间复杂度：\fzd{1}.
+时间复杂度：\fzd{\log n}.
 \code{FastPower}
+\subsection{欧几里得算法}
+时间复杂度：\fzd{\log n}.
+\code{EuclideanAlgorithm}
+\subsection{乘法逆元}
+\code{ModularInverse}
 \subsection{链表}
 \subsubsection{单向链表}
 \code{SingleLinkedList}
@@ -88,7 +96,7 @@
 \subsection{位运算}
 \subsubsection{异或}
 \begin{enumerate}[label=\arabic*)]
-    \item $\displaystyle\bigoplus_{i=1}^{n} i =
+    \item $\displaystyle\bigoplus _{i=1}^{n} i =
         \begin{cases}
             n      & \text{if } n \equiv 0 \pmod{4} \\
             1      & \text{if } n \equiv 1 \pmod{4} \\
@@ -118,6 +126,26 @@
     \sigma \left(a\right) &=\prod_{i=1}^{s}\frac{p_{i}^{\alpha_{i}+1}-1}{p_{i}-1}\\
     &=\prod_{i=1}^{s}\sigma \left(p_{i}^{\alpha_{i}}\right)
 \end{align*}
+\subsection{Fibonacci数列}
+\begin{align*}
+F_{n} &= \begin{cases}
+    0 & n = 0 \\
+    1 & n = 1 \\
+    f_{n-1} + f_{n-2} & n > 1
+\end{cases}\\
+&=\frac{1}{\sqrt{5}}\left[\left(\frac{1+\sqrt{5}}{2}\right)^{n}+\left(\frac{1-\sqrt{5}}{2}\right)^{n}\right]
+\end{align*}
+\subsubsection{基础性质}
+\[
+F_{m+n}=F_mF_{n+1} + F_{m-1}F_n\Longrightarrow\begin{cases}
+F_{2n+1} = F_n^2 + F_{n+1}^2 \\
+F_{2n+2} = F_{n+2}^2-F_n^2
+\end{cases}
+\]
+\subsubsection{Cassini恒等式}
+\[
+F_{n-1}F_{n+1} - F_{n}^{2} = (-1)^{n}
+\]
 \subsection{组合数学}
 \subsubsection{组合数的递推计算}
 组合数的递推公式为
@@ -131,4 +159,15 @@ C_{N+1}^{2} \cdot C_{M+1}^{2} = \frac{MN\left(M+1\right)\left(N+1\right)}{4}
 \]特别的，正方形的个数为\[
 \sum_{i=1}^{\min\left(M,N\right)} \left(M-i+1\right)\left(N-i+1\right)
 \]
+\subsection{构造问题}
+\subsubsection{幻方的构造}
+幻方的构造根据阶数$n\in\mathbb{N}^+$分为三种
+\paragraph{奇数阶幻方}
+对于$n=2k+1$的奇数阶幻方，构造方法为先把$1$放在第一行中间位置，接着对于每一个数$i\in\left[2,n\times n\right]$将其尽可能填在$i-1$的右上方，如果该位置超出顶角或者已经被填充，则将其放在$i-1$的正下方，直到填满所有位置
+\incfig{0.4}{MagicSquare1}
+\paragraph{双偶阶幻方}
+对于$n=4k$的双偶阶幻方，构造方法为先将其划分为一个个$4\times 4$的子幻方，然后从第$1$行第$1$列开始，按照从左到右、从上到下的顺序依次填充$1,2,\cdots,n^2$并且每个子幻方的对角线上不填充，接着从第$n$行第$n$列开始，按照从右到左、从下到上依次填充$1,2,\cdots,n^2$填充，这样就得到了一个双偶阶幻方.
+\incfig{0.9}{MagicSquare2}
+\paragraph{单偶阶幻方}
+对于$n=4k+2$的单偶阶幻方，构造方法为从上到下、从左到右分为四个象限$A$、$B$、$C$、$D$，每个象限内部按照奇数阶幻方填充，令$\displaystyle m=\frac{n-2}{4}$，以$A$象限的中心一格为第一格，取定包含第一格在内的共$m$格，然后取定$A$象限的不包括中心行、列在内的左边$m$格，这些与$C$象限对换.然后取定$B$象限包括中心列在内的左边$m$列，这些与$D$象限对换.
 \end{document}
