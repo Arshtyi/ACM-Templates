@@ -7,7 +7,7 @@
 \ProvidesClass{code}
 
 % --- Base Class and Options ---
-\LoadClass[a4paper,12pt]{article}
+\LoadClass[a4paper,12pt,twoside,openany]{book}
 \PassOptionsToPackage{quiet}{fontspec}
 % --- Engine Detection ---
 \RequirePackage{ifxetex}
@@ -47,3 +47,4 @@
 \RequirePackage{enumitem}
 \RequirePackage{graphicx}
 \RequirePackage{import}
+\AtBeginDocument{\fontsize{6}{8}\selectfont}
