@@ -1,6 +1,6 @@
 \documentclass{code}
 \usepackage{code}
-\title{Code Template}
+\title{Code Templates}
 \author{Arshtyi}
 \date{\today}
 \newcommand{\fzd}[1]{\ensuremath{O\left(#1\right)}}
@@ -20,17 +20,15 @@
 \fancyhead[L]{\leftmark}
 \fancyhead[R]{\thepage}
 \part{模板}
-\chapter{main}
+\chapter{Main}
 \thispagestyle{fancy}
-\section{main}
-\code{main}
-\newpage
+\section{Main}
+\code{Main}
 \chapter{排序}
 \thispagestyle{fancy}
 \section{快排}
 时间复杂度：\fzd{n \log n}.
 \code{QuickSort}
-\newpage
 \chapter{查询}
 \thispagestyle{fancy}
 \section{二分查找}
@@ -39,7 +37,6 @@
 \section{ST表}
 时间复杂度：\fzd{1}.
 \code{SparseTable}
-\newpage
 \chapter{搜索}
 \thispagestyle{fancy}
 \section{DFS}
@@ -48,7 +45,6 @@
 \section{BFS}
 时间复杂度：\fzd{V + E}.
 \code{BFS}
-\newpage
 \chapter{二叉树}
 \thispagestyle{fancy}
 \section{建树}
@@ -64,19 +60,29 @@
 \code{OrderTraversal}
 可以根据两种顺序遍历给出第三种遍历的结果.
 \code{OrderTraversalByTwoOrders}
-\newpage
+\chapter{DP}
+\thispagestyle{fancy}
+\section{简单01背包}
+给出背包容量$V$和$n$件物品，每件物品的体积为$w_i$，价值为$v_i$，每个物品至多选择一件，求在不超过背包容量的前提下，所能获得的最大价值.定义$DP[i][j]$表示前$i$件物品在容量为$j$的背包中所能获得的最大价值，则状态转移方程为
+\[
+    DP[i][j] = \max\left\{DP[i-1][j], DP[i-1][j-w_i]+v_i\right\}
+\]
+\code{01Knapsack}
+\section{完全背包}
+给出背包容量$V$和$n$件物品，每件物品的体积为$w_i$，价值为$v_i$，每个物品可以选择无限件，求在不超过背包容量的前提下，所能获得的最大价值.定义$DP[i][j]$表示前$i$件物品在容量为$j$的背包中所能获得的最大价值，则状态转移方程为
+\[
+    DP[i][j] = \max\left\{DP[i-1][j], DP[i][j-w_i]+v_i\right\}
+\]
 \chapter{图论}
 \thispagestyle{fancy}
 \section{拓扑排序}
 时间复杂度：\fzd{V + E}.
 \code{TopologicalSort}
-\newpage
 \chapter{数论}
 \thispagestyle{fancy}
 \section{素数筛}
 埃氏筛时间复杂度为\fzd{n \log \log n}.
 \code{SieveOfEratosthenes}
-\newpage
 \chapter{RHS}
 \thispagestyle{fancy}
 \section{快速幂}
@@ -100,6 +106,13 @@
 \section{高精度数类}
 \code{BigInteger}
 \part{Hints}
+\chapter{计算几何}
+\thispagestyle{fancy}
+\section{曼哈顿距离}
+点集的曼哈顿距离的最大值可以通过将点集绕45度旋转后计算其轴对齐包围盒的对角线长度得到.也就是
+\[
+    \max_{(x_1,y_1),(x_2,y_2)\in S}\left(|x_1-x_2|+|y_1-y_2|\right)=\max\left((x_1+y_1)-(x_2+y_2),(x_1-y_1)-(x_2-y_2)\right)
+\]
 \chapter{位运算}
 \thispagestyle{fancy}
 \section{异或}
@@ -169,14 +182,6 @@
 \]特别的，正方形的个数为\[
     \sum_{i=1}^{\min\left(M,N\right)} \left(M-i+1\right)\left(N-i+1\right)
 \]
-\chapter{背包问题}
-\thispagestyle{fancy}
-\section{简单01背包}
-给出背包容量$V$和$n$件物品，每件物品的体积为$v_i$，价值为$w_i$，求在不超过背包容量的前提下，所能获得的最大价值.定义$DP[i][j]$表示前$i$件物品在容量为$j$的背包中所能获得的最大价值，则状态转移方程为
-\[
-    DP[i][j] = \max\{DP[i-1][j], DP[i-1][j-v_i]+w_i\}
-\]
-边界条件为$DP[0][j]=0$，最终答案为$DP[n][V]$.
 \chapter{构造问题}
 \thispagestyle{fancy}
 \section{幻方的构造}
