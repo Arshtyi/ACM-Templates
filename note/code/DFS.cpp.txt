@@ -1,6 +1,0 @@
-int dfs(int node, vector<vector<int>> &graph, vector<bool> &visited)
-{
-    visited[node] = true;
-    for (int neighbor : graph[node]) if (!visited[neighbor]) dfs(neighbor, graph, visited);
-    return 0;
-}

@@ -1,0 +1,2 @@
+char gbuf[1 << 20], *gp1, *gp2;
+#define gc() (gp1 == gp2 && (gp2 = (gp1 = gbuf) + fread(gbuf, 1, 1 << 20, stdin), gp1 == gp2) ? EOF : *gp1++)

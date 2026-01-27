@@ -1,9 +1,1 @@
-*.aux
-*.log
-*.toc
-*.gz
-*.out
-*.synctex(busy)
-code.pdf
-
-/text/*
+*.pdf

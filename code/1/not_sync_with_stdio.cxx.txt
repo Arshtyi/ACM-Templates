@@ -1,0 +1,1 @@
+cin.tie(nullptr), cout.tie(nullptr), ios::sync_with_stdio(nullptr);

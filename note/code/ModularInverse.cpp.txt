@@ -1,9 +1,0 @@
-// 单个数a的逆元,此处为x=a^{-1}
-void ModularInverse(int a, int p, int &x, int &y) { Exgcd(a, p, x, y), x = (x % p + p) % p; }
-// 所有不大于n的正整数的逆元
-void ModularInverse(int inv[], int p)
-{
-    inv[1] = 1;
-    for (int i = 2; i <= p; ++i)
-        inv[i] = 1LL * (p - p / i) * inv[p % i] % p;
-}

@@ -1,0 +1,70 @@
+name: Build Typst Document
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Fontist
+        uses: fontist/setup-fontist@v2
+        with:
+          fontist-version: 2.0.1 # It looks like the v2.0.4 is not ready like https://github.com/fontist/setup-fontist/issues/20,so pin to v2.0.1
+
+      - name: Install fonts from manifest
+        run: fontist manifest-install manifest.yml
+
+      - name: Install Source Han Serif SC # This font is not available in Fontist yet so we install it manually
+        run: |
+          curl -L -o SourceHanSerifSC.zip https://github.com/adobe-fonts/source-han-serif/releases/download/2.003R/09_SourceHanSerifSC.zip
+          unzip SourceHanSerifSC.zip -d ~/.fontist/fonts
+
+      - name: Setup Typst
+        uses: typst-community/setup-typst@v4
+        with:
+          typst-version: ^0.14.0 # Because this project used features from Typst >=0.14.0
+          cache-dependency-path: dependency.typ # All dependencies are listed in this file
+
+      - name: Compile Typst document
+        run: typst compile main.typ Numerical-Linear-Algebra.pdf --font-path ~/.fontist/fonts
+
+      - name: Get current date
+        id: date
+        run: echo "date=$(date +'%Y-%m-%d-%H-%M')" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.date.outputs.date }}
+          name: Release ${{ steps.date.outputs.date }}
+          body: |
+            ## Build Information
+
+            This document was automatically compiled and released by GitHub Actions on `${{ steps.date.outputs.date }}`.
+
+            - **Commit Hash**: `${{ github.sha }}`
+            - **Commit Message**: ${{ github.event.head_commit.message }}
+
+            ### Dependencies
+
+            - **Typst Version**: `^0.14.0`
+            - **Packages**:
+              - `@preview/ori:0.2.3`
+
+            ### Upstream & Resources
+
+            - **Source Code**: [${{ github.repository }}](https://github.com/${{ github.repository }})
+            - **Typst**: [typst.app](https://typst.app)
+          files: Numerical-Linear-Algebra.pdf
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
