@@ -36,7 +36,7 @@ jobs:
           cache-dependency-path: dependency.typ # All dependencies are listed in this file
 
       - name: Compile Typst document
-        run: typst compile main.typ Numerical-Linear-Algebra.pdf --font-path ~/.fontist/fonts
+        run: typst compile main.typ Code.pdf --font-path ~/.fontist/fonts
 
       - name: Get current date
         id: date
@@ -65,6 +65,6 @@ jobs:
 
             - **Source Code**: [${{ github.repository }}](https://github.com/${{ github.repository }})
             - **Typst**: [typst.app](https://typst.app)
-          files: Numerical-Linear-Algebra.pdf
+          files: Code.pdf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
