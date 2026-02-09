@@ -25,14 +25,14 @@
 )
 
 = Input & Output
-== 关闭同步
+== Not Sync
 #code("code/1/not_sync_with_stdio.cxx.txt", "cpp")
-== 快读
+== Read
 #code("code/1/read.cxx.txt", "cpp")
-== fread
+== Fread
 #code("code/1/fread.cxx.txt", "cpp")
 = Sort
 == Quick Sort
 时间复杂度$O(n log n)$
 #code("code/2/quick_sort.cxx.txt", "cpp")
-= Query
+= Hash Table

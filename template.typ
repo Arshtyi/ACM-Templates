@@ -2,7 +2,7 @@
 
 #let font = (
     main: "IBM Plex Serif",
-    mono: "Maple Mono NF",
+    mono: "Fira Code",
     cjk: "Source Han Serif SC",
     emph-cjk: "Source Han Serif SC",
     math: "New Computer Modern Math",
