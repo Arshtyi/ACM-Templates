@@ -20,7 +20,7 @@ jobs:
         uses: fontist/setup-fontist@v2
 
       - name: Install fonts from manifest
-        run: fontist manifest-install manifest.yml
+        run: fontist manifest install --confirm-license manifest.yml
 
       - name: Install Source Han Serif SC # This font is not available in Fontist yet so we install it manually
         run: |
